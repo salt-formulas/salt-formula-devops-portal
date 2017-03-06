@@ -1,0 +1,16 @@
+{%- from "devops_portal/map.jinja" import control with context %}
+{%- set container = control.container %}
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-portal
+spec:
+  selector:
+    app: devops-portal
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ container.external_port }}
+      targetPort: {{ container.container_port }}
+  externalIPs:
+    - {{ container.external_ip }}

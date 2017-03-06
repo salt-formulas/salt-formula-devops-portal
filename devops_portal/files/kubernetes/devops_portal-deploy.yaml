@@ -1,0 +1,52 @@
+{%- from "devops_portal/map.jinja" import control with context %}
+{%- set container = control.container %}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: devops-portal
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: devops-portal
+    spec:
+      containers:
+        - name: nginx
+          image: {{ container.image }}
+          command:
+            - nginx
+            - -c
+            - /etc/nginx/config/nginx.conf
+          env:
+            - name: CONFIGMAP_HASH
+              value: {{ salt['hashutil.digest_file']('/srv/oss/devops_portal/kubernetes/devops_portal-cm.yaml') }}
+          volumeMounts:
+            - name: nginx-conf
+              mountPath: /etc/nginx/config
+              readOnly: true
+            - name: config-json
+              mountPath: /opt/devops-portal/config
+              readOnly: true
+          ports:
+            - containerPort: {{ container.container_port }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: {{ container.container_port }}
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: devops-portal
+            items:
+              - key: nginx.conf
+                path: nginx.conf
+        - name: config-json
+          configMap:
+            name: devops-portal
+            items:
+              - key: config.json
+                path: config.json
+      restartPolicy: Always
