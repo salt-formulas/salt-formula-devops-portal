@@ -1,0 +1,8 @@
+parameters:
+  devops_portal:
+    control:
+      services:
+        elasticsearch:
+          enabled: true
+          endpoint: ${_param:devops_portal_elasticsearch_url}
+          configure_proxy: true

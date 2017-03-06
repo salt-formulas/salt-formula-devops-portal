@@ -1,0 +1,8 @@
+parameters:
+  devops_portal:
+    control:
+      services:
+        riverdelta:
+          enabled: true
+          endpoint: ${_param:devops_portal_riverdelta_url}
+

@@ -1,0 +1,10 @@
+parameters:
+  devops_portal:
+    control:
+      services:
+        jenkins:
+          enabled: true
+          endpoint: ${_param:devops_portal_jenkins_url}
+          credentials:
+            username: ${_param:devops_portal_jenkins_username}
+            password: ${_param:devops_portal_jenkins_password}

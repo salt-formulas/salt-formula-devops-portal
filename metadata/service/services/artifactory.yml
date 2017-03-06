@@ -1,0 +1,7 @@
+parameters:
+  devops_portal:
+    control:
+      services:
+        artifactory:
+          enabled: true
+          endpoint: ${_param:devops_portal_artifactory_url}

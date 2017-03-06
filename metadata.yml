@@ -1,0 +1,3 @@
+name: "devops_portal"
+version: "0.1"
+source: "https://github.com/tcpcloud/salt-formula-devops-portal"

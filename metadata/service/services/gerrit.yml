@@ -1,0 +1,7 @@
+parameters:
+  devops_portal:
+    control:
+      services:
+        gerrit:
+          enabled: true
+          endpoint: ${_param:devops_portal_gerrit_url}

@@ -1,0 +1,7 @@
+parameters:
+  devops_portal:
+    control:
+      services:
+        grafana:
+          enabled: true
+          endpoint: ${_param:devops_portal_grafana_url}

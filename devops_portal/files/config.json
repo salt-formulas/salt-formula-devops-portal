@@ -1,0 +1,26 @@
+{%- from "devops_portal/map.jinja" import control with context -%}
+{%- from "devops_portal/map.jinja" import services with context -%}
+{%- macro credentials(parameters) -%}
+{%- set keys = ['token', 'username', 'password'] -%}
+"credentials": {
+{%- for key, value in salt['devops_utils.iter_items'](keys, parameters) %}
+  {%- if not loop.first %},{% endif %}
+  "{{ key }}": "{{ value }}"
+{%- endfor %}
+}
+{%- endmacro %}
+{
+  "services": {
+  {%- for service_name, service in salt['devops_utils.iter_items'](services, control.services) %}
+    {%- if not loop.first %},{% endif -%}
+    {%- if service|length() > 0 and service.enabled %}
+    "{{ service_name }}": {
+      "endpoint": "{{ service.endpoint }}"
+      {%- if service.credentials is defined and service.credentials|length() > 0 -%},
+      {{ credentials(service.credentials)|indent(width=8) }}
+      {%- endif %}
+    }
+    {%- endif %}
+  {%- endfor %}
+  }
+}

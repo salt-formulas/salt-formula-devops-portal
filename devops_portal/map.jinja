@@ -1,0 +1,13 @@
+{% set control = salt['pillar.get']('devops_portal:setup') %}
+{% set control = salt['pillar.get']('devops_portal:control') %}
+
+{% set services = [
+'artifactory',
+'elasticsearch',
+'gerrit',
+'grafana',
+'jenkins',
+'kibana',
+'riverdelta',
+'rundeck',
+] %}
