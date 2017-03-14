@@ -1,5 +1,5 @@
-{%- from "devops_portal/map.jinja" import control with context %}
-{%- set container = control.container %}
+{%- from "devops_portal/map.jinja" import config with context %}
+{%- set container = config.container %}
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -20,7 +20,7 @@ spec:
             - /etc/nginx/config/nginx.conf
           env:
             - name: CONFIGMAP_HASH
-              value: {{ salt['hashutil.digest_file']('/srv/oss/devops_portal/kubernetes/devops_portal-cm.yaml') }}
+              value: {{ salt['hashutil.digest_file'](config.base_dir + '/kubernetes/devops_portal-cm.yaml') }}
           volumeMounts:
             - name: nginx-conf
               mountPath: /etc/nginx/config

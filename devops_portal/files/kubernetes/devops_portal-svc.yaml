@@ -1,5 +1,5 @@
-{%- from "devops_portal/map.jinja" import control with context %}
-{%- set container = control.container %}
+{%- from "devops_portal/map.jinja" import config with context %}
+{%- set container = config.container %}
 apiVersion: v1
 kind: Service
 metadata:

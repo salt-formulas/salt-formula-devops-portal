@@ -1,3 +1,4 @@
+{%- from "devops_portal/map.jinja" import config with context %}
 {%- macro include_by_filename(filename) -%}
   {%- include filename -%}
 {%- endmacro -%}
@@ -7,6 +8,6 @@ metadata:
   name: devops-portal
 data:
   config.json: |
-{{ include_by_filename('/srv/oss/devops_portal/config/config.json')|indent(width=4, indentfirst=True) }}
+{{ include_by_filename(config.base_dir + '/config/config.json')|indent(width=4, indentfirst=True) }}
   nginx.conf: |
-{{ include_by_filename('/srv/oss/devops_portal/nginx/nginx.conf')|indent(width=4, indentfirst=True) }}
+{{ include_by_filename(config.base_dir + '/nginx/nginx.conf')|indent(width=4, indentfirst=True) }}
