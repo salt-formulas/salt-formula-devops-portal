@@ -29,7 +29,7 @@ devops_portal_config:
     - template: jinja
     - user: root
     - group: root
-    - mode: 0640
+    - mode: 0644
     - require:
       - file: devops_portal_dirs
 
