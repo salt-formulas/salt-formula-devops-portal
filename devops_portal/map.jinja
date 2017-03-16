@@ -1,5 +1,7 @@
 {% set control = salt['pillar.get']('devops_portal:setup') %}
-{% set control = salt['pillar.get']('devops_portal:control') %}
+{% set control = salt['pillar.get']('devops_portal:control', default={
+  "base_dir": "/srv/volumes/devops_portal",
+}, merge=True) %}
 
 {% set services = [
 'artifactory',

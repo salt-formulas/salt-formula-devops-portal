@@ -4,8 +4,8 @@
 devops_portal_dirs:
   file.directory:
     - names:
-      - /srv/oss/devops_portal/nginx
-      - /srv/oss/devops_portal/config
+      - {{ control.base_dir }}/nginx
+      - {{ control.base_dir }}/config
     - user: root
     - group: root
     - mode: 0755
@@ -13,7 +13,7 @@ devops_portal_dirs:
 
 devops_portal_nginx_conf:
   file.managed:
-    - name: /srv/oss/devops_portal/nginx/nginx.conf
+    - name: {{ control.base_dir }}/nginx/nginx.conf
     - source: salt://devops_portal/files/nginx.conf
     - template: jinja
     - user: root
@@ -24,7 +24,7 @@ devops_portal_nginx_conf:
 
 devops_portal_config:
   file.managed:
-    - name: /srv/oss/devops_portal/config/config.json
+    - name: {{ control.base_dir }}/config/config.json
     - source: salt://devops_portal/files/config.json
     - template: jinja
     - user: root
