@@ -6,4 +6,4 @@ parameters:
   devops_portal:
     config:
       enabled: true
-      services: {}
+      service: {}

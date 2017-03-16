@@ -11,7 +11,7 @@
 {%- endmacro %}
 {
   "services": {
-  {%- for service_name, service in salt['devops_utils.iter_items'](services, config.services) %}
+  {%- for service_name, service in salt['devops_utils.iter_items'](services, config.service) %}
     {%- if not loop.first %},{% endif -%}
     {%- if service|length() > 0 and service.enabled %}
     "{{ service_name }}": {
