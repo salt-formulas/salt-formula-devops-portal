@@ -14,10 +14,6 @@ spec:
       containers:
         - name: nginx
           image: {{ container.image }}
-          command:
-            - nginx
-            - -c
-            - /etc/nginx/config/nginx.conf
           env:
             - name: CONFIGMAP_HASH
               value: {{ salt['hashutil.digest_file'](config.base_dir + '/kubernetes/devops_portal-cm.yaml') }}
