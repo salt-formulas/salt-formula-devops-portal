@@ -1,7 +1,0 @@
-parameters:
-  devops_portal:
-    control:
-      services:
-        kibana:
-          enabled: true
-          endpoint: ${_param:devops_portal_kibana_url}
