@@ -1,5 +1,4 @@
-{%- from "devops_portal/map.jinja" import config with context %}
-{%- set container = config.container %}
+{%- from "devops_portal/map.jinja" import setup with context %}
 apiVersion: v1
 kind: Service
 metadata:
@@ -10,7 +9,7 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: {{ container.external_port }}
-      targetPort: {{ container.container_port }}
+      port: {{ setup.kubernetes.external_port }}
+      targetPort: 8000
   externalIPs:
-    - {{ container.external_ip }}
+    - {{ setup.kubernetes.external_ip }}

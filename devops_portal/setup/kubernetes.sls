@@ -1,6 +1,7 @@
 {%- from "devops_portal/map.jinja" import config with context %}
-{%- if config.setup.engine == "kubernetes" %}
-{%- set namespace = config.setup.kubernetes.namespace|default("oss") %}
+{%- from "devops_portal/map.jinja" import setup with context %}
+{%- if setup.engine == "kubernetes" %}
+{%- set namespace = setup.kubernetes.namespace|default("oss") %}
 
 devops_portal_kubernetes_dir:
   file.directory:

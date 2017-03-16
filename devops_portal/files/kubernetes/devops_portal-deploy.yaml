@@ -1,5 +1,5 @@
 {%- from "devops_portal/map.jinja" import config with context %}
-{%- set container = config.container %}
+{%- from "devops_portal/map.jinja" import setup with context %}
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: {{ container.image }}
+          image: {{ setup.kubernetes.image }}
           env:
             - name: CONFIGMAP_HASH
               value: {{ salt['hashutil.digest_file'](config.base_dir + '/kubernetes/devops_portal-cm.yaml') }}
@@ -25,11 +25,11 @@ spec:
               mountPath: /opt/devops-portal/config
               readOnly: true
           ports:
-            - containerPort: {{ container.container_port }}
+            - containerPort: 8000
           livenessProbe:
             httpGet:
               path: /
-              port: {{ container.container_port }}
+              port: 8000
             initialDelaySeconds: 10
             timeoutSeconds: 1
       volumes:
