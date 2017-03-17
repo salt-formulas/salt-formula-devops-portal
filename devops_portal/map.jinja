@@ -3,6 +3,11 @@
   "base_dir": "/srv/volumes/devops_portal",
 }, merge=True) %}
 
+{% macro service_url(endpoint) -%}
+{%- if endpoint.get('ssl', {}).enabled|default(False) -%}https://{%- else -%}http://{%- endif -%}
+{{ endpoint.address }}:{{ endpoint.port }}/
+{%- endmacro %}
+
 {% set services = [
 'artifactory',
 'elasticsearch',

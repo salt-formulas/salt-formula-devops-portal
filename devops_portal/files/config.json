@@ -1,5 +1,6 @@
 {%- from "devops_portal/map.jinja" import config with context -%}
 {%- from "devops_portal/map.jinja" import services with context -%}
+{%- from "devops_portal/map.jinja" import service_url with context -%}
 {%- macro credentials(parameters) -%}
 {%- set keys = ['token', 'username', 'password'] -%}
 "credentials": {
@@ -15,7 +16,7 @@
     {%- if not loop.first %},{% endif -%}
     {%- if service|length() > 0 and service.enabled %}
     "{{ service_name }}": {
-      "endpoint": "{{ service.endpoint }}"
+      "endpoint": "{{ service_url(service.endpoint) }}"
       {%- if service.credentials is defined and service.credentials|length() > 0 -%},
       {{ credentials(service.credentials)|indent(width=8) }}
       {%- endif %}
