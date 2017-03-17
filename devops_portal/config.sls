@@ -1,5 +1,5 @@
 {%- from "devops_portal/map.jinja" import config with context %}
-{%- if config.enabled %}
+{%- if config.enabled|default(False) %}
 
 devops_portal_dirs:
   file.directory:
