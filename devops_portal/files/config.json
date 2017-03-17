@@ -14,7 +14,7 @@
   "services": {
   {%- for service_name, service in salt['devops_utils.iter_items'](services, config.service) %}
     {%- if not loop.first %},{% endif -%}
-    {%- if service|length() > 0 and service.enabled %}
+    {%- if service.enabled|default(True) %}
     "{{ service_name }}": {
       "endpoint": "{{ service_url(service.endpoint) }}"
       {%- if service.credentials is defined and service.credentials|length() > 0 -%},
