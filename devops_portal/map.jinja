@@ -4,7 +4,7 @@
 }, merge=True) %}
 
 {% macro service_url(endpoint) -%}
-{%- if endpoint.get('ssl', {}).enabled|default(False) -%}https://{%- else -%}http://{%- endif -%}
+{%- if endpoint.get('https', False) -%}https://{%- else -%}http://{%- endif -%}
 {{ endpoint.address }}:{{ endpoint.port }}/
 {%- endmacro %}
 
