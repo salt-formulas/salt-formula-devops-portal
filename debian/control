@@ -1,0 +1,15 @@
+Source: salt-formula-devops-portal
+Maintainer: Ilya Kharin <ikharin@mirantis.com>
+Section: admin
+Priority: optional
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: http://mirantis.com
+Vcs-Browser: https://gerrit.mcp.mirantis.net/gitweb?p=salt-formulas%2Fdevops-portal.git
+Vcs-Git: https://gerrit.mcp.mirantis.net/salt-formulas/devops-portal
+
+Package: salt-formula-devops-portal
+Architecture: all
+Depends: ${misc:Depends}, salt-master, reclass
+Description: devops-portal salt formula
+ Install and configure the DevOps portal.

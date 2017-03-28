@@ -1,0 +1,5 @@
+salt-formula-devops-portal (2017.3) trusty; urgency=medium
+
+  * Initial version
+
+   -- Ilya Kharin <ikharin@mirantis.com>  Tue, 28 Mar 2017 15:00:00 +0400
