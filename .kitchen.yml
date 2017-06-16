@@ -1,0 +1,44 @@
+---
+driver:
+  name: docker
+  hostname: devops_portal.ci.local
+  use_sudo: false
+
+provisioner:
+  name: salt_solo
+  salt_install: bootstrap
+  salt_bootstrap_url: https://bootstrap.saltstack.com
+  salt_version: latest
+  require_chef: false
+  log_level: error
+  formula: devops_portal
+  grains:
+    noservices: true
+  state_top:
+    base:
+      "*":
+        - devops_portal
+  pillars:
+    top.sls:
+      base:
+        "*":
+          - devops_portal
+
+verifier:
+  name: inspec
+  sudo: true
+
+
+platforms:
+  - name: <%=ENV['PLATFORM'] || 'ubuntu-xenial'%>
+    driver_config:
+      image: <%=ENV['PLATFORM'] || 'trevorj/salty-whales:xenial'%>
+      platform: ubuntu
+
+suites:
+  - name: config
+    provisioner:
+      pillars-from-files:
+        devops_portal.sls: tests/pillar/config.sls
+
+# vim: ft=yaml sw=2 ts=2 sts=2 tw=125
