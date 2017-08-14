@@ -8,6 +8,12 @@
 {{ endpoint.address }}:{{ endpoint.port }}/
 {%- endmacro %}
 
+{% macro service_url_dns(endpoint) -%}
+{%- if endpoint.get('https', False) -%}https://{%- else -%}http://{%- endif -%}
+${{ endpoint.address|replace("-", "_") }}:{{ endpoint.port }}
+{%- endmacro %}
+
+
 {% set services = [
 'artifactory',
 'elasticsearch',
