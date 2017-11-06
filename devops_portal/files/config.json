@@ -6,7 +6,9 @@
 "credentials": {
 {%- for key, value in salt['devops_utils.iter_items'](keys, parameters) %}
   {%- if not loop.first %},{% endif %}
-  "{{ key }}": "{{ value }}"
+  {%- if value != None %}
+  "{{ key }}": "{{ value }}"{% else %}
+  "{{ key }}": ""{%- endif %}
 {%- endfor %}
 }
 {%- endmacro %}
