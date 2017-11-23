@@ -1,0 +1,13 @@
+dashboard:
+  csm_dashboard:
+    datasource: prometheus
+    format: json
+    template: devops_portal/files/grafana_dashboards/csm_dashboard.json
+  openstack_availability:
+    datasource: prometheus
+    format: json
+    template: devops_portal/files/grafana_dashboards/openstack_availability.json
+  openstack_fci:
+    datasource: prometheus
+    format: json
+    template: devops_portal/files/grafana_dashboards/openstack_fci.json
