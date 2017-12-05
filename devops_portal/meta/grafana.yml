@@ -11,3 +11,11 @@ dashboard:
     datasource: prometheus
     format: json
     template: devops_portal/files/grafana_dashboards/openstack_fci.json
+  compute_dashboard:
+    datasource: prometheus
+    format: json
+    template: devops_portal/files/grafana_dashboards/compute_dashboard.json
+  cloud_usage_dashboard:
+    datasource: prometheus
+    format: json
+    template: devops_portal/files/grafana_dashboards/cloud_usage_dashboard.json
