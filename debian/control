@@ -10,6 +10,6 @@ Vcs-Git: https://github.com/salt-formulas/salt-formula-devops-portal.git
 
 Package: salt-formula-devops-portal
 Architecture: all
-Depends: ${misc:Depends}, salt-master, reclass
+Depends: ${misc:Depends}
 Description: devops-portal salt formula
  Install and configure the DevOps portal.
