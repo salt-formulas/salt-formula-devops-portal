@@ -5,11 +5,7 @@
 
 {% macro service_url(endpoint) -%}
 {%- if endpoint.get('https', False) -%}https://{%- else -%}http://{%- endif -%}
-{%- if endpoint.get('custom_path', None) -%}
-{{ endpoint.address }}:{{ endpoint.port }}/{{ endpoint.custom_path }}
-{%- else -%}
 {{ endpoint.address }}:{{ endpoint.port }}/
-{%- endif -%}
 {%- endmacro %}
 
 {% macro service_url_dns(endpoint) -%}
