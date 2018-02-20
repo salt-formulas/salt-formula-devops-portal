@@ -1,4 +1,18 @@
 dashboard:
+{%- if pillar.get('fluentd', {}).get('agent', {}).get('enabled', False) %}
+  csm_dashboard:
+    datasource: prometheus
+    format: json
+    template: devops_portal/files/grafana_dashboards/csm_dashboard_fluentd.json
+  openstack_availability:
+    datasource: prometheus
+    format: json
+    template: devops_portal/files/grafana_dashboards/openstack_availability_fluentd.json
+  openstack_fci:
+    datasource: prometheus
+    format: json
+    template: devops_portal/files/grafana_dashboards/openstack_fci_fluentd.json
+{%- else %}
   csm_dashboard:
     datasource: prometheus
     format: json
@@ -11,6 +25,7 @@ dashboard:
     datasource: prometheus
     format: json
     template: devops_portal/files/grafana_dashboards/openstack_fci.json
+{%- endif %}
   compute_dashboard:
     datasource: prometheus
     format: json
