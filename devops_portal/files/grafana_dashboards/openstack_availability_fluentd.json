@@ -1125,7 +1125,7 @@
             "rgba(245, 54, 54, 0.9)"
           ],
           "datasource": "prometheus",
-          "format": "percent",
+          "format": "percentunit",
           "gauge": {
             "maxValue": 100,
             "minValue": 0,
@@ -1171,10 +1171,10 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(openstack_cinder_volumes_size) /  sum(openstack_cinder_size_total_default) * 100",
+              "expr": "1 - sum(openstack_cinder_pool_capacity_free) / sum(openstack_cinder_pool_capacity_total)",
               "format": "time_series",
               "intervalFactor": 2,
-              "metric": "openstack_cinder_volumes_size",
+              "metric": "openstack_cinder_pool_capacity_total",
               "refId": "A",
               "step": 600
             }
