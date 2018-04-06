@@ -393,7 +393,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "count(system_uptime{host=~\"cmp.*\"})",
+              "expr": "count(openstack_nova_service{service=\"nova-compute\"})",
               "format": "time_series",
               "intervalFactor": 2,
               "refId": "A",
