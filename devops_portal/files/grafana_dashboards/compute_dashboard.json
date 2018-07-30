@@ -431,7 +431,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "openstack_nova_used_ram{hostname=\"$compute\"}/(openstack_nova_used_ram{hostname=\"$compute\"} + openstack_nova_free_ram{hostname=\"$compute\"}) * 100",
+              "expr": "max(openstack_nova_used_ram{hostname=\"$compute\"}/(openstack_nova_used_ram{hostname=\"$compute\"} + openstack_nova_free_ram{hostname=\"$compute\"}) * 100)",
               "format": "time_series",
               "intervalFactor": 2,
               "refId": "A",
@@ -507,7 +507,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "openstack_nova_used_disk{hostname=\"$compute\"}/(openstack_nova_used_disk{hostname=\"$compute\"} + openstack_nova_free_disk{hostname=\"$compute\"}) * 100",
+              "expr": "max(openstack_nova_used_disk{hostname=\"$compute\"}/(openstack_nova_used_disk{hostname=\"$compute\"} + openstack_nova_free_disk{hostname=\"$compute\"}) * 100)",
               "format": "time_series",
               "intervalFactor": 2,
               "refId": "A",
@@ -583,7 +583,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "openstack_nova_used_vcpus{hostname=\"$compute\"}/(openstack_nova_used_vcpus{hostname=\"$compute\"} + openstack_nova_free_vcpus{hostname=\"$compute\"}) * 100",
+              "expr": "max(openstack_nova_used_vcpus{hostname=\"$compute\"}/(openstack_nova_used_vcpus{hostname=\"$compute\"} + openstack_nova_free_vcpus{hostname=\"$compute\"}) * 100)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Free vCPU",
@@ -828,7 +828,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "openstack_nova_used_ram{hostname=\"$compute\"}",
+              "expr": "max(openstack_nova_used_ram{hostname=\"$compute\"})",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Used Ram",

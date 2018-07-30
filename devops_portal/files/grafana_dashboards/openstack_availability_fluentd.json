@@ -693,7 +693,7 @@
           ],
           "targets": [
             {
-              "expr": "openstack_api_check_status == 0",
+              "expr": "max(openstack_api_check_status) without (instance) == 0",
               "format": "time_series",
               "intervalFactor": 2,
               "legendFormat": "{{ service }}",
@@ -773,7 +773,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "count(openstack_nova_service{service=\"nova-compute\"})",
+              "expr": "max(count(openstack_nova_service{service=\"nova-compute\"}) by (instance))",
               "format": "time_series",
               "intervalFactor": 2,
               "refId": "A",
@@ -825,7 +825,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "openstack_nova_instances{state=\"active\"}",
+              "expr": "max(openstack_nova_instances{state=\"active\"})",
               "format": "time_series",
               "intervalFactor": 2,
               "metric": "",
@@ -937,7 +937,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "openstack_nova_total_used_vcpus / (openstack_nova_total_used_vcpus + openstack_nova_total_free_vcpus) * 100",
+              "expr": "max(openstack_nova_total_used_vcpus / (openstack_nova_total_free_vcpus + openstack_nova_total_used_vcpus) * 100)",
               "format": "time_series",
               "intervalFactor": 2,
               "legendFormat": "",
@@ -1015,7 +1015,7 @@
           "tableColumn": "Value",
           "targets": [
             {
-              "expr": "openstack_nova_total_used_ram / (openstack_nova_total_free_ram + openstack_nova_total_used_ram) * 100",
+              "expr": "max(openstack_nova_total_used_ram / (openstack_nova_total_free_ram + openstack_nova_total_used_ram) * 100)",
               "format": "time_series",
               "interval": "5m",
               "intervalFactor": 1,
@@ -1094,7 +1094,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "openstack_nova_total_used_disk / (openstack_nova_total_free_disk + openstack_nova_total_used_ram) * 100",
+              "expr": "max(openstack_nova_total_used_disk / (openstack_nova_total_free_disk + openstack_nova_total_used_disk) * 100)",
               "format": "time_series",
               "intervalFactor": 2,
               "metric": "openstack_nova_total_free_disk",
@@ -1171,7 +1171,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "1 - sum(openstack_cinder_pool_capacity_free) / sum(openstack_cinder_pool_capacity_total)",
+              "expr": "max(1 - sum(openstack_cinder_pool_capacity_free) by (instance) / sum(openstack_cinder_pool_capacity_total) by (instance))",
               "format": "time_series",
               "intervalFactor": 2,
               "metric": "openstack_cinder_pool_capacity_total",
